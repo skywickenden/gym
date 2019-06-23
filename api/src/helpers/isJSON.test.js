@@ -1,8 +1,8 @@
 const isJSON = require("./isJSON");
 
-describe('Test the isJSON helper', () => {
+describe("Test the isJSON helper", () => {
   let newFooId;
-  test('It should return true if string is JSON', () => {
+  test("It should return true if string is JSON", () => {
     // JSON sample taken from https://json.org/example.html
     expect(isJSON(`
     {
@@ -29,7 +29,7 @@ describe('Test the isJSON helper', () => {
     }`)).toBe(true);
   });
 
-  test('It should return false if string is not JSON', () => {
+  test("It should return false if string is not JSON", () => {
     // Missing quotes
     expect(isJSON(`{ foo: "bar" }`)).toBe(false);
     // Missing brace

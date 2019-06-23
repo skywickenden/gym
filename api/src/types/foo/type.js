@@ -5,7 +5,7 @@ const {
 } = require("graphql");
 
 module.exports = new GraphQLObjectType({
-  name: 'Foo',
+  name: "Foo",
   fields: {
     id: { type: GraphQLID },
     foobar: { type: GraphQLString }

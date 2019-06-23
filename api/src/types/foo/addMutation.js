@@ -7,6 +7,7 @@ const FooModel = require("./model");
 
 module.exports = {
   type: FooType,
+  description: "Add an item of Foo",
   args: {
     foobar: { type: GraphQLNonNull(GraphQLString) }
   },

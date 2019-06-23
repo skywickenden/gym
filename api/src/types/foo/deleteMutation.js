@@ -3,13 +3,15 @@ const {
   GraphQLNonNull
 } = require("graphql");
 const FooType = require("./type");
-const FooResolver = require("./resolver");
+const FooModel = require("./model");
 
 module.exports = {
   type: FooType,
-  description: "An item of Foo",
+  description: "Delete an item of Foo",
   args: {
     id: { type: GraphQLNonNull(GraphQLID) }
   },
-  resolve: FooResolver
+  resolve: (root, args, context, info) => {
+    return FooModel.findById(args.id).deleteOne().exec();
+  }
 };
