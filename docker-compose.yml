@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   client:
-    container_name: react-graphql-blueprint
+    container_name: gym-client
     build: './client'
     command: npm run start
     environment:
@@ -16,7 +16,7 @@ services:
       - ${CLIENT_HOST_PORT}:8080 
 
   api:
-    container_name: graphql-node-blueprint-api
+    container_name: gym-api
     build: ./api
     command: npm run start
     depends_on: 
@@ -38,7 +38,7 @@ services:
       - ${API_HOST_DEBUG_PORT}:9229
 
   mongo: 
-    container_name: graphql-node-blueprint-mongo
+    container_name: gym-mongo
     image: mongo:4.0
     restart: always
     environment:
