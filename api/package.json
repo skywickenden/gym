@@ -1,0 +1,31 @@
+{
+  "name": "api-boilerplate",
+  "version": "1.0.0",
+  "description": "A simple express server npm boilerplate",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest --watchAll",
+    "start": "nodemon -L --inspect=0.0.0.0 server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skywickenden/api-boilerplate.git"
+  },
+  "author": "Sky Wickenden",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/skywickenden/api-boilerplate/issues"
+  },
+  "homepage": "https://github.com/skywickenden/api-boilerplate#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-graphql": "^0.8.0",
+    "graphql": "^14.3.1",
+    "mongoose": "^5.5.14"
+  },
+  "devDependencies": {
+    "jest": "^24.8.0",
+    "supertest": "^4.0.2"
+  }
+}

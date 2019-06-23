@@ -1,19 +1,6 @@
 version: "3.7"
 
-services:
-  client:
-    container_name: react-graphql-blueprint
-    build: './client'
-    command: npm run start
-    environment:
-      - PORT=8080
-      - NODE_ENV=development
-    volumes:
-      - ./client:/usr/src/app
-      - /usr/src/app/node_modules
-    ports:
-      - ${CLIENT_HOST_PORT}:8080     
-
+services: 
   api:
     container_name: graphql-node-blueprint-api
     build: ./api
@@ -51,4 +38,4 @@ services:
       - mongo-data:/data/db
 
 volumes:
-  mongo-data:      
+  mongo-data:
