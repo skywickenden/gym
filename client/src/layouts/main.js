@@ -22,7 +22,8 @@ const styles = {
 const MainLayout = props => (
   <div className={styles.base} data-testid="base">
     <header>
-      <h1 className={styles.title}>React GraphQL Blueprint</h1>
+      <h1 className={styles.title}>Gym</h1>
+      <h3>Graphing your workout</h3>
       <nav className={styles.nav}>
         <Link className={styles.navItem} to="/">Home</Link>
         <Link className={styles.navItem} to="/foo">Foo</Link>

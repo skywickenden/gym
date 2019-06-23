@@ -12,7 +12,10 @@ it("Renders and has text content", () => {
 
   // Only need to test elements with styles attached
   // All HTML is tested by the snapshot
-  const title = getByText("React GraphQL Blueprint");
+  const title = getByText("Gym");
+  expect(title.nodeName).toEqual("H1");
+  const subTitle = getByText("Graphing your workout");
+  expect(subTitle.nodeName).toEqual("H3");
 
   const baseElement = getByTestId("base");
   const { critical: baseCSS } = collect(baseElement, css);

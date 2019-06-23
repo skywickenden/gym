@@ -10,8 +10,11 @@ exports[`Renders and has text content 1`] = `
       <h1
         class="tkso86p"
       >
-        React GraphQL Blueprint
+        Gym
       </h1>
+      <h3>
+        Graphing your workout
+      </h3>
       <nav
         class="nn3ty9u"
       >
