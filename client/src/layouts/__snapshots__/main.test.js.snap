@@ -2,24 +2,27 @@
 
 exports[`Renders and has text content 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="b1gffk2o"
+    data-testid="base"
+  >
     <header>
       <h1
-        class="t1gffk2o"
+        class="tkso86p"
       >
         React GraphQL Blueprint
       </h1>
       <nav
-        class="nkso86p"
+        class="nn3ty9u"
       >
         <a
-          class="nn3ty9u"
+          class="n1rj6n47"
           href="/"
         >
           Home
         </a>
         <a
-          class="nn3ty9u"
+          class="n1rj6n47"
           href="/foo"
         >
           Foo

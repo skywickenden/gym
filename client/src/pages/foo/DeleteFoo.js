@@ -1,6 +1,18 @@
 import React from "react";
 import { commitMutation, graphql } from "react-relay";
 import environment from "../../../relay-environment";
+import { css } from "linaria";
+import baseStyles from "../../base-styles";
+
+const styles = {
+  delete: css`
+    ${baseStyles.button}
+    float: right;
+    &:hover {
+      ${baseStyles.buttonHover}
+    }
+  `
+};
 
 const DeleteFoo = props => {
 
@@ -38,7 +50,7 @@ const DeleteFoo = props => {
   };
 
   return (
-    <button onClick={deleteClicked}>
+    <button className={styles.delete}  onClick={deleteClicked}>
       Delete
     </button>
   );

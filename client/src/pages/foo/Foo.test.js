@@ -1,7 +1,14 @@
 import React from "react";
-import { render, wait, queryMock, fireEvent, waitForElement } from "../../../test-utils";
+import { render, wait, queryMock, fireEvent } from "../../../test-utils";
 import { toContainElement } from "jest-dom/extend-expect";
 import Foo from "./Foo";
+
+import { collect } from "linaria/server";
+import fs from "fs";
+import path from "path";
+const addFooCSS = fs.readFileSync(path.resolve("./.linaria-cache/src/pages/foo/AddFoo.linaria.css"), "utf8");
+const listFooCSS = fs.readFileSync(path.resolve("./.linaria-cache/src/pages/foo/ListFoo.linaria.css"), "utf8");
+const deleteFooCSS = fs.readFileSync(path.resolve("./.linaria-cache/src/pages/foo/DeleteFoo.linaria.css"), "utf8");
 
 describe("Foo Integration", () => {
   it("Lists Foo, Adds Foo and Deletes Foo", async () => {
@@ -41,10 +48,6 @@ describe("Foo Integration", () => {
       expect(queryByText("Loading...")).toBeNull();
       expect(queryByText("Error!")).toBeNull();
 
-      // Add Foo Form
-      const addTitle = getByText("Add Foo");
-      expect(addTitle.nodeName).toEqual("H4");
-
       // List Foo
       const listTitle = getByText("List Foo");
       expect(listTitle.nodeName).toEqual("H4");
@@ -54,11 +57,70 @@ describe("Foo Integration", () => {
       expect(listItem2.nodeName).toEqual("LI");
       const deleteButtons = getAllByText("Delete");
       expect(deleteButtons.length).toEqual(2);
+      const { critical: listItemCSS } = collect(listItem1, listFooCSS);
+      expect(listItemCSS).toEqual(expect.stringContaining("height:25px;"));
+      expect(listItemCSS).toEqual(expect.stringContaining("padding:5px;"));
+      expect(listItemCSS).toEqual(expect.stringContaining("line-height:25px;"));
+      expect(listItemCSS).toEqual(expect.stringContaining(":nth-child(odd){background-color:#ddeeff;}"));
+      expect(listItemCSS).toEqual(expect.stringContaining(":nth-child(even){background-color:#d5e5ff;}"));
+     
+      const list = listItem1.parent;
+      const { critical: listCSS } = collect(list, listFooCSS);
+      expect(listCSS).toEqual(expect.stringContaining("width:400px"));
+      expect(listCSS).toEqual(expect.stringContaining("list-style-type:none;"));
+      expect(listCSS).toEqual(expect.stringContaining("padding:0;"));
+
       expect(listItem1).toContainElement(deleteButtons[0]);  
       expect(listItem2).toContainElement(deleteButtons[1]);
+      const { critical: deleteCSS } = collect(deleteButtons[0], deleteFooCSS);
+      expect(deleteCSS).toEqual(expect.stringContaining("outline-style:none;"));
+      expect(deleteCSS).toEqual(expect.stringContaining("display:inline-block;"));
+      expect(deleteCSS).toEqual(expect.stringContaining("margin-bottom:0;"));
+      expect(deleteCSS).toEqual(expect.stringContaining("font-size:12px;"));
+      expect(deleteCSS).toEqual(expect.stringContaining("font-weight:normal;"));
+      expect(deleteCSS).toEqual(expect.stringContaining("line-height:1.42857143;"));
+      expect(deleteCSS).toEqual(expect.stringContaining("text-align:center;"));
+      expect(deleteCSS).toEqual(expect.stringContaining("white-space:nowrap;"));
+      expect(deleteCSS).toEqual(expect.stringContaining("vertical-align:middle;"));
+      expect(deleteCSS).toEqual(expect.stringContaining("background-image:none;"));
+      expect(deleteCSS).toEqual(expect.stringContaining("border:1px solid transparent;"));
+      expect(deleteCSS).toEqual(expect.stringContaining("border-radius:4px;"));
+      expect(deleteCSS).toEqual(expect.stringContaining("padding:3px 12px;"));
+      expect(deleteCSS).toEqual(expect.stringContaining("cursor:pointer;"));
+      expect(deleteCSS).toEqual(expect.stringContaining("background-color:#428bca;"));
+      expect(deleteCSS).toEqual(expect.stringContaining("color:#fff;"));
+      expect(deleteCSS).toEqual(expect.stringContaining("float:right;"));
+      expect(deleteCSS).toEqual(expect.stringContaining(":hover{background-color:#3276b1;}"));
     });
 
-    // Add Foo Event
+    // Add Foo
+    const addTitle = getByText("Add Foo");
+    expect(addTitle.nodeName).toEqual("H4");
+    const input = getByLabelText("Enter some foo:");
+    const addButton = getByText("Add")
+
+    const { critical: inputCSS } = collect(input, addFooCSS);
+    expect(inputCSS).toEqual(expect.stringContaining("margin:0 10px;"));
+
+    const { critical: addCSS } = collect(addButton, addFooCSS);
+    expect(addCSS).toEqual(expect.stringContaining("outline-style:none;"));
+    expect(addCSS).toEqual(expect.stringContaining("display:inline-block;"));
+    expect(addCSS).toEqual(expect.stringContaining("margin-bottom:0;"));
+    expect(addCSS).toEqual(expect.stringContaining("font-size:12px;"));
+    expect(addCSS).toEqual(expect.stringContaining("font-weight:normal;"));
+    expect(addCSS).toEqual(expect.stringContaining("line-height:1.42857143;"));
+    expect(addCSS).toEqual(expect.stringContaining("text-align:center;"));
+    expect(addCSS).toEqual(expect.stringContaining("white-space:nowrap;"));
+    expect(addCSS).toEqual(expect.stringContaining("vertical-align:middle;"));
+    expect(addCSS).toEqual(expect.stringContaining("background-image:none;"));
+    expect(addCSS).toEqual(expect.stringContaining("border:1px solid transparent;"));
+    expect(addCSS).toEqual(expect.stringContaining("border-radius:4px;"));
+    expect(addCSS).toEqual(expect.stringContaining("padding:3px 12px;"));
+    expect(addCSS).toEqual(expect.stringContaining("cursor:pointer;"));
+    expect(addCSS).toEqual(expect.stringContaining("background-color:#428bca;"));
+    expect(addCSS).toEqual(expect.stringContaining("color:#fff;"));
+    expect(addCSS).toEqual(expect.stringContaining(":hover{background-color:#3276b1;}"));
+
     queryMock.mockQuery({
       name: "AddFooMutation",
       variables: {
@@ -72,9 +134,7 @@ describe("Foo Integration", () => {
       }
     });  
     
-    const input = getByLabelText("Enter some foo:");
-    input.value = "morebaz";
-    const addButton = getByText("Add");
+    input.value = "morebaz";;
     fireEvent.click(addButton);
     await wait(() => {
       expect(getAllByText("Delete").length).toEqual(3);

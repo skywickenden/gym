@@ -1,6 +1,20 @@
 import React, { useRef } from "react";
 import { commitMutation, graphql } from "react-relay";
 import environment from "../../../relay-environment";
+import { css } from "linaria";
+import baseStyles from "../../base-styles";
+
+const styles = {
+  input: css`
+    margin: 0 10px;
+  `,
+  add: css`
+    ${baseStyles.button}
+    &:hover {
+      ${baseStyles.buttonHover}
+    }
+  `
+};
 
 const AddFoo = () => {
 
@@ -43,9 +57,9 @@ const AddFoo = () => {
       <h4>Add Foo</h4>
       <label>
         Enter some foo:
-        <input ref={newFooRef} type="text" />
+        <input className={styles.input} ref={newFooRef} type="text" />
       </label>
-      <button onClick={addClicked.bind(this)}>
+      <button className={styles.add} onClick={addClicked.bind(this)}>
         Add
       </button>
     </div>

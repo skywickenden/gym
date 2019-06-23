@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { css } from "linaria";
 
 const styles = {
+  base: css`
+    font-family: Arial, Helvetica, sans-serif
+  `,
   title: css`
     color: #872258;
     font-size: 30px;
@@ -17,7 +20,7 @@ const styles = {
 }
 
 const MainLayout = props => (
-  <div>
+  <div className={styles.base} data-testid="base">
     <header>
       <h1 className={styles.title}>React GraphQL Blueprint</h1>
       <nav className={styles.nav}>

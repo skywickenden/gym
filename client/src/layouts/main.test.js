@@ -8,12 +8,16 @@ import path from "path";
 const css = fs.readFileSync(path.resolve("./.linaria-cache/src/layouts/main.linaria.css"), "utf8");
 
 it("Renders and has text content", () => {
-  const { getByText, asFragment } = render(<Main />);
+  const { getByText, asFragment, getByTestId  } = render(<Main />);
 
   // Only need to test elements with styles attached
   // All HTML is tested by the snapshot
   const title = getByText("React GraphQL Blueprint");
 
+  const baseElement = getByTestId("base");
+  const { critical: baseCSS } = collect(baseElement, css);
+  expect(baseCSS).toEqual(expect.stringContaining("font-family:Arial,Helvetica,sans-serif;"));
+  
   const { critical: titleCSS } = collect(title, css);
   expect(titleCSS).toEqual(expect.stringContaining("color:#872258;"));
   expect(titleCSS).toEqual(expect.stringContaining("font-size:30px;"));
@@ -30,5 +34,7 @@ it("Renders and has text content", () => {
   expect(navCSS).toEqual(expect.stringContaining("background-color:#eeeeff;"));
   expect(navCSS).toEqual(expect.stringContaining("padding:5px;"));
 
+  // This is here as an alternative example for how to test
+  // However snapshots do not test the css and tend to be quite brittle.
   expect(asFragment()).toMatchSnapshot();
 });
