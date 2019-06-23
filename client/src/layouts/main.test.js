@@ -29,6 +29,10 @@ it("Renders and has text content", () => {
   const { critical: homeLinkCSS } = collect(homeLink, css);
   expect(homeLinkCSS).toEqual(expect.stringContaining("margin:2px 5px;"));
 
+  const exercisesLink = getByText("Exercises");
+  const { critical: exercisesLinkCSS } = collect(exercisesLink, css);
+  expect(exercisesLinkCSS).toEqual(expect.stringContaining("margin:2px 5px;"));
+
   const fooLink = getByText("Foo");
   const { critical: fooLinkCSS } = collect(fooLink, css);
   expect(fooLinkCSS).toEqual(expect.stringContaining("margin:2px 5px;"));

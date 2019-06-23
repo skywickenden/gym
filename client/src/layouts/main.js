@@ -26,6 +26,7 @@ const MainLayout = props => (
       <h3>Graphing your workout</h3>
       <nav className={styles.nav}>
         <Link className={styles.navItem} to="/">Home</Link>
+        <Link className={styles.navItem} to="/exercises">Exercises</Link>
         <Link className={styles.navItem} to="/foo">Foo</Link>
       </nav>
     </header>
