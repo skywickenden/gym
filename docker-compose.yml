@@ -8,11 +8,12 @@ services:
     environment:
       - PORT=8080
       - NODE_ENV=development
+      - API_PORT=3000
     volumes:
       - ./client:/usr/src/app
       - /usr/src/app/node_modules
     ports:
-      - ${CLIENT_HOST_PORT}:8080     
+      - ${CLIENT_HOST_PORT}:8080 
 
   api:
     container_name: graphql-node-blueprint-api
