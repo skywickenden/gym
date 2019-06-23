@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders and has text content 1`] = `
+<DocumentFragment>
+  <div>
+    <header>
+      <h1
+        class="t1gffk2o"
+      >
+        React GraphQL Blueprint
+      </h1>
+      <nav
+        class="nkso86p"
+      >
+        <a
+          class="nn3ty9u"
+          href="/"
+        >
+          Home
+        </a>
+        <a
+          class="nn3ty9u"
+          href="/foo"
+        >
+          Foo
+        </a>
+      </nav>
+    </header>
+    <main />
+  </div>
+</DocumentFragment>
+`;

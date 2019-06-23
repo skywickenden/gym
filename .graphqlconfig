@@ -1,0 +1,12 @@
+{
+  "projects": {
+    "client": {
+      "schemaPath": "schema.graphql",
+      "extensions": {
+        "endpoints": {
+          "default": "http://graphql-node-blueprint-api:3000/graphql"
+        }
+      } 
+    }
+  }
+}
