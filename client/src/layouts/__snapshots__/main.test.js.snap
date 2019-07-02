@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders and has text content 1`] = `
+<DocumentFragment>
+  <div
+    class="b1gffk2o"
+    data-testid="base"
+  >
+    <header>
+      <h1
+        class="tkso86p"
+      >
+        Gym
+      </h1>
+      <h3>
+        Graphing your workout
+      </h3>
+      <nav
+        class="nn3ty9u"
+      >
+        <a
+          class="n1rj6n47"
+          href="/"
+        >
+          Home
+        </a>
+        <a
+          class="n1rj6n47"
+          href="/exercises"
+        >
+          Exercises
+        </a>
+        <a
+          class="n1rj6n47"
+          href="/foo"
+        >
+          Foo
+        </a>
+      </nav>
+    </header>
+    <main />
+  </div>
+</DocumentFragment>
+`;
