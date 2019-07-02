@@ -16,9 +16,9 @@ Demonstrates usage of:
  * Jest - with react-testing-library - for testing on fronted and back
  * Eslint for linting
  
- ### Setup
+### Setup
  
- Clone into a folder. Copy `example.env` into `.env` and edit `.env` to add unique db passwords and ensure that the ports the app runs on are available.
+Clone into a folder. Copy `example.env` into `.env` and edit `.env` to add unique db passwords and ensure that the ports the app runs on are available. Copy `example.mong-init.js` into `mong-init.js` and add the same passwords as entered into `.env`.
  
  Run `docker-compose build` followed by `docker-comose up`. 
  
