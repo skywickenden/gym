@@ -2,3 +2,4 @@ node_modules/*
 npm-debug.log*
 .linaria-cache/*
 .env
+mongo-init.js
