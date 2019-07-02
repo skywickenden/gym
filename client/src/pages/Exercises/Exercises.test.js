@@ -1,6 +1,5 @@
 import React from "react";
 import { render } from "../../../test-utils";
-import { toHaveTextContent } from "jest-dom/extend-expect";
 import Exercises from "./Exercises";
 
 it("Renders and has text content", () => {

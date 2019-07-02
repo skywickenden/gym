@@ -1,5 +1,5 @@
 const FooModel = require("./model");
 
-module.exports = (root, args, context, info) => {
+module.exports = (root, args) => {
   return FooModel.findById(args.id).exec();
 };

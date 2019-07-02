@@ -15,7 +15,7 @@ describe("Test the addFoo mutation", () => {
               foobar
             }
           }`
-        })
+      })
       .expect(200)
       .expect(function (res) {
         expect(isJSON(res.text)).toBe(true);
@@ -33,7 +33,7 @@ describe("Test the addFoo mutation", () => {
             }
           }
         });
-      })
+      });
   });
-})
+});
 

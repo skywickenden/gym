@@ -6,7 +6,8 @@
     "test": "jest --watchAll",
     "start": "webpack-dev-server --mode development --hot --host 0.0.0.0",
     "getschema": "graphql get-schema --project client --watch",
-    "relay": "relay-compiler --src ./src --schema ./schema.graphql"
+    "relay": "relay-compiler --src ./src --schema ./schema.graphql",
+    "lint": "eslint src"
   },
   "repository": {
     "type": "git",
@@ -34,6 +35,9 @@
     "babel-plugin-relay": "^5.0.0",
     "core-js": "^2.6.9",
     "css-loader": "^2.1.1",
+    "eslint": "^6.0.1",
+    "eslint-plugin-jest": "^22.7.1",
+    "eslint-plugin-react": "^7.14.2",
     "graphql": "^14.3.1",
     "graphql-query-test-mock": "^0.11.1",
     "html-loader": "^0.5.5",

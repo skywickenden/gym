@@ -1,6 +1,5 @@
 import React from "react";
 import { render, wait, queryMock, fireEvent } from "../../../test-utils";
-import { toContainElement } from "jest-dom/extend-expect";
 import Foo from "./Foo";
 
 import { collect } from "linaria/server";
@@ -97,7 +96,7 @@ describe("Foo Integration", () => {
     const addTitle = getByText("Add Foo");
     expect(addTitle.nodeName).toEqual("H4");
     const input = getByLabelText("Enter some foo:");
-    const addButton = getByText("Add")
+    const addButton = getByText("Add");
 
     const { critical: inputCSS } = collect(input, addFooCSS);
     expect(inputCSS).toEqual(expect.stringContaining("margin:0 10px;"));
@@ -134,7 +133,7 @@ describe("Foo Integration", () => {
       }
     });  
     
-    input.value = "morebaz";;
+    input.value = "morebaz";
     fireEvent.click(addButton);
     await wait(() => {
       expect(getAllByText("Delete").length).toEqual(3);

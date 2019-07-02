@@ -23,7 +23,7 @@ describe("Test the deleteFoo mutation", () => {
               id
             }
           }`
-        })
+      })
       .expect(200)
       .expect(async (res) => {
         expect(isJSON(res.text)).toBe(true);
@@ -41,5 +41,5 @@ describe("Test the deleteFoo mutation", () => {
         expect (notDeletedFoo.foobar).toEqual("baztest2");
       });
   });
-})
+});
 

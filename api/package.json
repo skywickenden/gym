@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "jest --watchAll",
-    "start": "nodemon -L --inspect=0.0.0.0 server.js"
+    "start": "nodemon -L --inspect=0.0.0.0 server.js",
+    "lint": "eslint src"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,8 @@
     "mongoose": "^5.5.14"
   },
   "devDependencies": {
+    "eslint": "^6.0.1",
+    "eslint-plugin-jest": "^22.7.1",
     "jest": "^24.8.0",
     "supertest": "^4.0.2"
   }

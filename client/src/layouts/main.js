@@ -17,7 +17,7 @@ const styles = {
   navItem: css`
     margin: 2px 5px;
   `
-}
+};
 
 const MainLayout = props => (
   <div className={styles.base} data-testid="base">

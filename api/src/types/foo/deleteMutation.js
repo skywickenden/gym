@@ -11,7 +11,7 @@ module.exports = {
   args: {
     id: { type: GraphQLNonNull(GraphQLID) }
   },
-  resolve: (root, args, context, info) => {
+  resolve: (root, args) => {
     return FooModel.findById(args.id).deleteOne().exec();
   }
 };

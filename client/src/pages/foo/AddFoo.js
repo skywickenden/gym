@@ -46,11 +46,11 @@ const AddFoo = () => {
         const newAllSubmissions = [...allSubmissions, newSubmission];
         root.setLinkedRecords(newAllSubmissions, "Foos");
       },
-      onCompleted: (response) => newFooRef.current.value = "",
+      onCompleted: () => newFooRef.current.value = "",
       onError: err => console.error(err)
     });
 
-  }
+  };
 
   return (
     <div>

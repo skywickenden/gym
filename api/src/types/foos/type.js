@@ -1,6 +1,5 @@
 const {
-  GraphQLList,
-  GraphQLNonNull
+  GraphQLList
 } = require("graphql");
 const Foo = require("../foo/type");
 

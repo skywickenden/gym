@@ -11,30 +11,30 @@ const Foo = () => (
     <h3>Foo page</h3>
 
     <QueryRenderer
-        environment={environment}
-        query={graphql`
-          query FooQuery {
-            Foos {
-              ...ListFoo_Foos
-            }
+      environment={environment}
+      query={graphql`
+        query FooQuery {
+          Foos {
+            ...ListFoo_Foos
           }
-        `}
-        render={({error, props}) => {
-          if (error) {
-            console.error(error);
-            return <div>Error!</div>;
-          }
-          if (!props) {
-            return <div>Loading...</div>;
-          }
-          return (
-            <div>
-              <AddFoo Foos={props.Foos} />
-              <ListFoo Foos={props.Foos} />
-            </div>
-          );
-        }}
-      />
+        }
+      `}
+      render={({error, props}) => {
+        if (error) {
+          console.error(error);
+          return <div>Error!</div>;
+        }
+        if (!props) {
+          return <div>Loading...</div>;
+        }
+        return (
+          <div>
+            <AddFoo Foos={props.Foos} />
+            <ListFoo Foos={props.Foos} />
+          </div>
+        );
+      }}
+    />
       
   </Layout>
 );

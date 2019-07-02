@@ -1,6 +1,5 @@
 const supertest = require("supertest");
 const app = require("../../../app");
-const isJSON = require("../../helpers/isJSON");
 const FooModel = require("../foo/model");
 
 describe("Test the foo mutation and query", () => {
@@ -13,27 +12,27 @@ describe("Test the foo mutation and query", () => {
   });
 
   test("It should fetch the foo query", () => {
-      return supertest(app)
-        .post("/graphql")
-        .send({"query": `
-          query {
-            Foo(id: "${foo.id}") {
-              id
-              foobar
+    return supertest(app)
+      .post("/graphql")
+      .send({"query": `
+        query {
+          Foo(id: "${foo.id}") {
+            id
+            foobar
+          }
+        }
+      `})
+      .expect(200)
+      .expect(function (res) {
+        expect(JSON.parse(res.text)).toEqual({
+          data: {
+            Foo: {
+              id: foo.id,
+              foobar: "baz"
             }
           }
-        `})
-        .expect(200)
-        .expect(function (res) {
-          expect(JSON.parse(res.text)).toEqual({
-            data: {
-              Foo: {
-                id: foo.id,
-                foobar: "baz"
-              }
-            }
-          });
-        })
+        });
+      });
   });
-})
+});
 
