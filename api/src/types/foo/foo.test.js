@@ -23,7 +23,7 @@ describe("Test the foo mutation and query", () => {
         }
       `})
       .expect(200)
-      .expect(function (res) {
+      .expect((res) => {
         expect(JSON.parse(res.text)).toEqual({
           data: {
             Foo: {
