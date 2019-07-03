@@ -17,7 +17,7 @@ describe("Test the addFoo mutation", () => {
           }`
       })
       .expect(200)
-      .expect(function (res) {
+      .expect((res) => {
         expect(isJSON(res.text)).toBe(true);
         const body = JSON.parse(res.text);
         expect(Object.keys(body)[0]).toBe("data");
