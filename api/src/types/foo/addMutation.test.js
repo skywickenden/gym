@@ -6,7 +6,7 @@ describe("Test the addFoo mutation", () => {
   let newFooId;
   test("It should perform an addFoo mutation", () => {
     return supertest(app)
-      .post("/graphql").expect(200)
+      .post("/graphql")
       .send({
         query: `
           mutation {
