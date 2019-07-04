@@ -1,6 +1,7 @@
 const supertest = require("supertest");
 const app = require("../../../app");
 const FooModel = require("../foo/model");
+const isJSON = require("../../helpers/isJSON");
 
 describe("Test the foos query", () => {
 
@@ -25,6 +26,7 @@ describe("Test the foos query", () => {
       `})
       .expect(200)
       .expect((res) => {
+        expect(isJSON(res.text)).toBe(true);
         expect(JSON.parse(res.text)).toEqual({
           data: {
             Foos: [
