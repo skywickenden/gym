@@ -13,7 +13,7 @@ describe("Test the deleteFoo mutation", () => {
     done();
   });
 
-  test("It should perform an addFoo mutation", () => {
+  test("It should perform a deleteFoo mutation", () => {
     return supertest(app)
       .post("/graphql")
       .send({
