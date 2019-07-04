@@ -3,6 +3,7 @@ const {
   GraphQLSchema,
 } = require("graphql");
 const exerciseQuery = require("./types/exercise/query");
+const exercisesQuery = require("./types/exercises/query");
 const addExerciseMutation = require("./types/exercise/addMutation");
 const deleteExerciseMutation = require("./types/exercise/deleteMutation");
 const fooQuery = require("./types/foo/query");
@@ -15,6 +16,7 @@ module.exports = new GraphQLSchema({
     name: "RootQueryType",
     fields: {
       Exercise: exerciseQuery,
+      Exercises: exercisesQuery,
       Foo: fooQuery,
       Foos: foosQuery,
     }
