@@ -1,9 +1,15 @@
-# source: http://graphql-node-blueprint-api:3000/graphql
-# timestamp: Tue Jun 18 2019 13:46:08 GMT+0000 (Coordinated Universal Time)
+# source: http://gym-api:3000/graphql
+# timestamp: Thu Jul 04 2019 06:05:04 GMT+0000 (Coordinated Universal Time)
 
 schema {
   query: RootQueryType
   mutation: RootMutationType
+}
+
+type Exercise {
+  id: ID
+  name: String
+  description: String
 }
 
 type Foo {
@@ -12,14 +18,23 @@ type Foo {
 }
 
 type RootMutationType {
+  """Add an an exercise item"""
+  addExercise(name: String!, description: String): Exercise
+
   """Add an item of Foo"""
   addFoo(foobar: String!): Foo
 
   """Delete an item of Foo"""
   deleteFoo(id: ID!): Foo
+
+  """Delete an exercise"""
+  deleteExercise(id: ID!): Exercise
 }
 
 type RootQueryType {
+  """An Exercise item"""
+  Exercise(id: ID!): Exercise
+
   """An item of Foo"""
   Foo(id: ID!): Foo
 
