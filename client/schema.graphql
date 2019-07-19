@@ -1,5 +1,5 @@
 # source: http://gym-api:3000/graphql
-# timestamp: Thu Jul 04 2019 06:05:04 GMT+0000 (Coordinated Universal Time)
+# timestamp: Fri Jul 19 2019 06:07:21 GMT+0000 (Coordinated Universal Time)
 
 schema {
   query: RootQueryType
@@ -34,6 +34,9 @@ type RootMutationType {
 type RootQueryType {
   """An Exercise item"""
   Exercise(id: ID!): Exercise
+
+  """A collection of Exercises"""
+  Exercises: [Exercise]
 
   """An item of Foo"""
   Foo(id: ID!): Foo
