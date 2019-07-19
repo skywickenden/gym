@@ -1,5 +1,6 @@
 import React from "react";
 import { createFragmentContainer, graphql } from "react-relay";
+import DeleteExercise from "./DeleteExercise";
 
 import { css } from "linaria";
 
@@ -31,6 +32,7 @@ const ListExercises = props => (
       {props.Exercises.map(exercise => (
         <li className={styles.item} key={exercise.id}>
           {exercise.name}
+          <DeleteExercise exerciseId={exercise.id} />
         </li>
       ))}
     </ul>
