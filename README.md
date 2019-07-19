@@ -24,19 +24,19 @@ Clone into a folder. Copy `example.env` into `.env` and edit `.env` to add uniqu
  
 ### Developing
 
-To install new packages: Run the docker with `docker-compose run client sh` or `docker-compose run api sh` and then use `npm install <package_name>`. Type `exit` to return to your command line and then rebuild and rerun - only this time add a -V switch... `docker-compose up -V`. This will force the deletion of the anonymous node_package volume and prevent a [docker race condition issue.](https://github.com/docker/compose/issues/4337)
+To install new packages: Run the docker with `docker-compose run --rm client sh` or `docker-compose run --rm api sh` and then use `npm install <package_name>`. Type `exit` to return to your command line and then rebuild and rerun - only this time add a -V switch... `docker-compose up -V`. This will force the deletion of the anonymous node_package volume and prevent a [docker race condition issue.](https://github.com/docker/compose/issues/4337)
 
 Graphql schema changes are developed on the api. They then need copying to the client and compiling:
 
-  * A service that watches for graphql schema changes on the server and copies them to the local schema `docker-compose run client npm run getschema`
-  * A service that compiles react-graphql schema code into graphql for hot reloading. `docker-compose run client npm run relay`
+  * A service that watches for graphql schema changes on the server and copies them to the local schema `docker-compose run --rm client npm run getschema`
+  * A service that compiles react-graphql schema code into graphql for hot reloading. `docker-compose run --rm client npm run relay`
   
 There is a seperate test runner for both client and api
 
-  * The test runner. `docker-compose run client npm run test`
-  * The test runner. `docker-compose run api npm run test`
+  * The test runner. `docker-compose run --rm client npm run test`
+  * The test runner. `docker-compose run --rm api npm run test`
   
 There is a seperate linting process for both client and api
 
-  * The test runner. `docker-compose run client npm run lint`
-  * The test runner. `docker-compose run api npm run lint`
+  * The test runner. `docker-compose run --rm client npm run lint`
+  * The test runner. `docker-compose run --rm api npm run lint`
