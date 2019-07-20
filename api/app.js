@@ -23,7 +23,10 @@ app.use(bodyParser.urlencoded({ extended: false }))
 if (env.NODE_ENV === "test") {
   mongoose.connect(
     `mongodb://${mongo.username}:${mongo.password}@${mongo.service}:${mongo.port}/${mongo.database}-test?authSource=${mongo.database}`,
-    { useNewUrlParser: true }
+    { 
+      useNewUrlParser: true,
+      useFindAndModify: false 
+    }
   );
 
   // delete any stale test data
@@ -38,7 +41,10 @@ if (env.NODE_ENV === "test") {
 } else {
   mongoose.connect(
     `mongodb://${mongo.username}:${mongo.password}@${mongo.service}:${mongo.port}/${mongo.database}`,
-    { useNewUrlParser: true }
+    { 
+      useNewUrlParser: true,
+      useFindAndModify: false 
+    }
   );
 }
 

@@ -6,6 +6,7 @@ const exerciseQuery = require("./types/exercise/query");
 const exercisesQuery = require("./types/exercises/query");
 const addExerciseMutation = require("./types/exercise/addMutation");
 const deleteExerciseMutation = require("./types/exercise/deleteMutation");
+const editExerciseMutation = require("./types/exercise/editMutation");
 
 module.exports = new GraphQLSchema({
   query: new GraphQLObjectType({
@@ -19,7 +20,8 @@ module.exports = new GraphQLSchema({
     name: "RootMutationType",
     fields: {
       addExercise: addExerciseMutation,
-      deleteExercise: deleteExerciseMutation
+      deleteExercise: deleteExerciseMutation,
+      editExercise: editExerciseMutation
     }
   })    
 });

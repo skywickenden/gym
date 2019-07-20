@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { css } from "linaria";
 import baseStyles from "../../base-styles";
-import AddExerciseForm from "./AddExerciseForm";
 
 const styles = {
   openForm: css`
@@ -12,19 +12,19 @@ const styles = {
   `
 };
 
-const AddExerciseButton = () => {
+const AddExerciseButton = (props) => {
 
-  const [isAddFormVisible, toggleAddFormVisibility] = useState(false);
-
-  return isAddFormVisible ? (
-    <AddExerciseForm toggleAddFormVisibility={toggleAddFormVisibility}/>
-  ) : (
+  return (
     <button 
       className={styles.openForm}
-      onClick={() => toggleAddFormVisibility(!isAddFormVisible)}>
+      onClick={() => props.showForm()}>
       Add Exercise
     </button>
   );
+};
+
+AddExerciseButton.propTypes = {
+  showForm: PropTypes.func.isRequired,
 };
 
 export default AddExerciseButton;

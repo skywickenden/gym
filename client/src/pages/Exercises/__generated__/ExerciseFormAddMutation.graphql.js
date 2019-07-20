@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash e28d4adac736f27dcdfeeb507112dcac
+ * @relayHash b30680c60ef4d707dc2ab298331a26c5
  */
 
 /* eslint-disable */
@@ -9,28 +9,28 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type AddExerciseFormMutationVariables = {|
+export type ExerciseFormAddMutationVariables = {|
   name: string,
-  description: string,
+  description?: ?string,
 |};
-export type AddExerciseFormMutationResponse = {|
+export type ExerciseFormAddMutationResponse = {|
   +addExercise: ?{|
     +id: ?string,
     +name: ?string,
     +description: ?string,
   |}
 |};
-export type AddExerciseFormMutation = {|
-  variables: AddExerciseFormMutationVariables,
-  response: AddExerciseFormMutationResponse,
+export type ExerciseFormAddMutation = {|
+  variables: ExerciseFormAddMutationVariables,
+  response: ExerciseFormAddMutationResponse,
 |};
 */
 
 
 /*
-mutation AddExerciseFormMutation(
+mutation ExerciseFormAddMutation(
   $name: String!
-  $description: String!
+  $description: String
 ) {
   addExercise(name: $name, description: $description) {
     id
@@ -51,7 +51,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "description",
-    "type": "String!",
+    "type": "String",
     "defaultValue": null
   }
 ],
@@ -104,7 +104,7 @@ return {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
-    "name": "AddExerciseFormMutation",
+    "name": "ExerciseFormAddMutation",
     "type": "RootMutationType",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
@@ -112,19 +112,19 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "AddExerciseFormMutation",
+    "name": "ExerciseFormAddMutation",
     "argumentDefinitions": (v0/*: any*/),
     "selections": (v1/*: any*/)
   },
   "params": {
     "operationKind": "mutation",
-    "name": "AddExerciseFormMutation",
+    "name": "ExerciseFormAddMutation",
     "id": null,
-    "text": "mutation AddExerciseFormMutation(\n  $name: String!\n  $description: String!\n) {\n  addExercise(name: $name, description: $description) {\n    id\n    name\n    description\n  }\n}\n",
+    "text": "mutation ExerciseFormAddMutation(\n  $name: String!\n  $description: String\n) {\n  addExercise(name: $name, description: $description) {\n    id\n    name\n    description\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'fc156a0c84790da0ef126c0cd08a16ff';
+(node/*: any*/).hash = 'bd39e1cf10dc2763474b3c28d9c9f873';
 module.exports = node;

@@ -1,4 +1,5 @@
 const {
+  GraphQLID,
   GraphQLNonNull,
   GraphQLString
 } = require("graphql");
@@ -7,14 +8,19 @@ const model = require("./model");
 
 module.exports = {
   type: type,
-  description: "Add an an exercise item",
+  description: "Edit an an exercise item",
   args: {
+    id: { type: GraphQLNonNull(GraphQLID) },
     name: { type: GraphQLNonNull(GraphQLString) },
     description: { type: GraphQLString }
   },
-  resolve: (root, args) => {
+  resolve: async (root, args) => {
     console.log(args);
-    const exercise = new model(args);
-    return exercise.save();
+    return await model.findByIdAndUpdate(
+      args.id, 
+      args,
+      { new: true }
+    ).exec();
+    
   }
 };

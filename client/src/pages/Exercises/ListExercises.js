@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { createFragmentContainer, graphql } from "react-relay";
 import DeleteExercise from "./DeleteExercise";
+import EditExercise from "./EditExercise";
 
 import { css } from "linaria";
 
@@ -36,12 +38,11 @@ const styles = {
 
 const ListExercises = props => {
   
-  const [showDescritionId, setShowDescriptionId] = useState(null);
+  const [showDescriptionId, setShowDescriptionId] = useState(null);
 
   const exerciseClicked = (exercise) => {
     setShowDescriptionId(exercise.id);
   };
-  
   return (
     <div>
       {props.Exercises.length === 0 ? (
@@ -49,10 +50,16 @@ const ListExercises = props => {
       ) : ""}
       <ul className={styles.list}>
         {props.Exercises.map(exercise => (
-          <li className={styles.item} key={exercise.id} onClick={exerciseClicked.bind(null, exercise)}>
+          <li 
+            className={styles.item} 
+            key={exercise.id} 
+            onClick={exerciseClicked.bind(null, exercise)}>
             <DeleteExercise exerciseId={exercise.id} />
+            <EditExercise 
+              exercise={exercise} 
+              showForm={props.showForm} />
             {exercise.name}
-            {showDescritionId === exercise.id ? (
+            {showDescriptionId === exercise.id ? (
               <div className={styles.description}>
                 {exercise.description}
               </div>
@@ -62,6 +69,11 @@ const ListExercises = props => {
       </ul>
     </div>
   );
+};
+
+ListExercises.propTypes = {
+  Exercises: PropTypes.array.isRequired,
+  showForm: PropTypes.func.isRequired
 };
 
 export default createFragmentContainer(ListExercises, {
