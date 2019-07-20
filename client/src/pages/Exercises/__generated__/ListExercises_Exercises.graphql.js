@@ -14,6 +14,7 @@ declare export opaque type ListExercises_Exercises$fragmentType: ListExercises_E
 export type ListExercises_Exercises = $ReadOnlyArray<{|
   +id: ?string,
   +name: ?string,
+  +description: ?string,
   +$refType: ListExercises_Exercises$ref,
 |}>;
 export type ListExercises_Exercises$data = ListExercises_Exercises;
@@ -46,9 +47,16 @@ const node/*: ReaderFragment*/ = {
       "name": "name",
       "args": null,
       "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "description",
+      "args": null,
+      "storageKey": null
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'c84cb666f3059cbb8a64f18b84a5a69d';
+(node/*: any*/).hash = 'e3e0f880068d9961b801fd3a6c471048';
 module.exports = node;

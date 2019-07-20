@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 980e3330d9dcb6ed8def7e1a2483b774
+ * @relayHash 6c0bff13728109fc905ddd6067eaa81f
  */
 
 /* eslint-disable */
@@ -34,6 +34,7 @@ query ExercisesQuery {
 fragment ListExercises_Exercises on Exercise {
   id
   name
+  description
 }
 */
 
@@ -91,6 +92,13 @@ const node/*: ConcreteRequest*/ = {
             "name": "name",
             "args": null,
             "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "description",
+            "args": null,
+            "storageKey": null
           }
         ]
       }
@@ -100,7 +108,7 @@ const node/*: ConcreteRequest*/ = {
     "operationKind": "query",
     "name": "ExercisesQuery",
     "id": null,
-    "text": "query ExercisesQuery {\n  Exercises {\n    ...ListExercises_Exercises\n    id\n  }\n}\n\nfragment ListExercises_Exercises on Exercise {\n  id\n  name\n}\n",
+    "text": "query ExercisesQuery {\n  Exercises {\n    ...ListExercises_Exercises\n    id\n  }\n}\n\nfragment ListExercises_Exercises on Exercise {\n  id\n  name\n  description\n}\n",
     "metadata": {}
   }
 };
