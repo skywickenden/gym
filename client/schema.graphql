@@ -1,5 +1,5 @@
 # source: http://gym-api:3000/graphql
-# timestamp: Fri Jul 19 2019 14:29:54 GMT+0000 (Coordinated Universal Time)
+# timestamp: Sat Jul 20 2019 08:09:13 GMT+0000 (Coordinated Universal Time)
 
 schema {
   query: RootQueryType
@@ -12,20 +12,9 @@ type Exercise {
   description: String
 }
 
-type Foo {
-  id: ID
-  foobar: String
-}
-
 type RootMutationType {
   """Add an an exercise item"""
   addExercise(name: String!, description: String): Exercise
-
-  """Add an item of Foo"""
-  addFoo(foobar: String!): Foo
-
-  """Delete an item of Foo"""
-  deleteFoo(id: ID!): Foo
 
   """Delete an exercise"""
   deleteExercise(id: ID!): Exercise
@@ -37,10 +26,4 @@ type RootQueryType {
 
   """A collection of Exercises"""
   Exercises: [Exercise]
-
-  """An item of Foo"""
-  Foo(id: ID!): Foo
-
-  """A collection of Foo"""
-  Foos: [Foo]
 }

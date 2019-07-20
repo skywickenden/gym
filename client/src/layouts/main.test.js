@@ -33,10 +33,6 @@ it("Renders and has text content", () => {
   const { critical: exercisesLinkCSS } = collect(exercisesLink, css);
   expect(exercisesLinkCSS).toEqual(expect.stringContaining("margin:2px 5px;"));
 
-  const fooLink = getByText("Foo");
-  const { critical: fooLinkCSS } = collect(fooLink, css);
-  expect(fooLinkCSS).toEqual(expect.stringContaining("margin:2px 5px;"));
-
   const { critical: navCSS } = collect(homeLink.parent, css);
   expect(navCSS).toEqual(expect.stringContaining("background-color:#eeeeff;"));
   expect(navCSS).toEqual(expect.stringContaining("padding:5px;"));
