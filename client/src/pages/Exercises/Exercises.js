@@ -4,7 +4,7 @@ import environment from "../../../relay-environment";
 
 import Layout from "../../layouts/main";
 import ListExercises from "./ListExercises";
-import AddExercise from "./AddExercise";
+import AddExerciseButton from "./AddExerciseButton";
 
 const Exercises = () => (
   <Layout>
@@ -29,7 +29,7 @@ const Exercises = () => (
         }
         return (
           <div>
-            <AddExercise Exercises={props.Exercises} />
+            <AddExerciseButton />
             <ListExercises Exercises={props.Exercises} />
           </div>
         );

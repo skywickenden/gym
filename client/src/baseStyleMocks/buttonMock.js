@@ -1,4 +1,4 @@
-export default (overrides) => {
+export default (overrides = {}) => {
 
   const styles = {
     "outline-style": "none;",

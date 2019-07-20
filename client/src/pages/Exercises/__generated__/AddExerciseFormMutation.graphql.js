@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash bccef326fcd3dc00c836ce694c2421cc
+ * @relayHash e28d4adac736f27dcdfeeb507112dcac
  */
 
 /* eslint-disable */
@@ -9,29 +9,33 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type AddExerciseMutationVariables = {|
-  name: string
+export type AddExerciseFormMutationVariables = {|
+  name: string,
+  description: string,
 |};
-export type AddExerciseMutationResponse = {|
+export type AddExerciseFormMutationResponse = {|
   +addExercise: ?{|
     +id: ?string,
     +name: ?string,
+    +description: ?string,
   |}
 |};
-export type AddExerciseMutation = {|
-  variables: AddExerciseMutationVariables,
-  response: AddExerciseMutationResponse,
+export type AddExerciseFormMutation = {|
+  variables: AddExerciseFormMutationVariables,
+  response: AddExerciseFormMutationResponse,
 |};
 */
 
 
 /*
-mutation AddExerciseMutation(
+mutation AddExerciseFormMutation(
   $name: String!
+  $description: String!
 ) {
-  addExercise(name: $name) {
+  addExercise(name: $name, description: $description) {
     id
     name
+    description
   }
 }
 */
@@ -43,6 +47,12 @@ var v0 = [
     "name": "name",
     "type": "String!",
     "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "description",
+    "type": "String!",
+    "defaultValue": null
   }
 ],
 v1 = [
@@ -52,6 +62,11 @@ v1 = [
     "name": "addExercise",
     "storageKey": null,
     "args": [
+      {
+        "kind": "Variable",
+        "name": "description",
+        "variableName": "description"
+      },
       {
         "kind": "Variable",
         "name": "name",
@@ -74,6 +89,13 @@ v1 = [
         "name": "name",
         "args": null,
         "storageKey": null
+      },
+      {
+        "kind": "ScalarField",
+        "alias": null,
+        "name": "description",
+        "args": null,
+        "storageKey": null
       }
     ]
   }
@@ -82,7 +104,7 @@ return {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
-    "name": "AddExerciseMutation",
+    "name": "AddExerciseFormMutation",
     "type": "RootMutationType",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
@@ -90,19 +112,19 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "AddExerciseMutation",
+    "name": "AddExerciseFormMutation",
     "argumentDefinitions": (v0/*: any*/),
     "selections": (v1/*: any*/)
   },
   "params": {
     "operationKind": "mutation",
-    "name": "AddExerciseMutation",
+    "name": "AddExerciseFormMutation",
     "id": null,
-    "text": "mutation AddExerciseMutation(\n  $name: String!\n) {\n  addExercise(name: $name) {\n    id\n    name\n  }\n}\n",
+    "text": "mutation AddExerciseFormMutation(\n  $name: String!\n  $description: String!\n) {\n  addExercise(name: $name, description: $description) {\n    id\n    name\n    description\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '92f013385c5b51df5ec649577c0fef99';
+(node/*: any*/).hash = 'fc156a0c84790da0ef126c0cd08a16ff';
 module.exports = node;
