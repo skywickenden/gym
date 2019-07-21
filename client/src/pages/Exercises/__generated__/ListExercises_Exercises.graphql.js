@@ -15,6 +15,7 @@ export type ListExercises_Exercises = $ReadOnlyArray<{|
   +id: ?string,
   +name: ?string,
   +description: ?string,
+  +type: ?string,
   +$refType: ListExercises_Exercises$ref,
 |}>;
 export type ListExercises_Exercises$data = ListExercises_Exercises;
@@ -54,9 +55,16 @@ const node/*: ReaderFragment*/ = {
       "name": "description",
       "args": null,
       "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "type",
+      "args": null,
+      "storageKey": null
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'e3e0f880068d9961b801fd3a6c471048';
+(node/*: any*/).hash = '0a4951fd0dc7e4e2ed83b70289e60b98';
 module.exports = node;

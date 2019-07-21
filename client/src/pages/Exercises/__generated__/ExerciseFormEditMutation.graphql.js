@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 9cbc374361a13b347f97f0bcb8068d54
+ * @relayHash 8fbaef0fd708ffc3fea6d601d4ab0659
  */
 
 /* eslint-disable */
@@ -13,12 +13,14 @@ export type ExerciseFormEditMutationVariables = {|
   id: string,
   name: string,
   description?: ?string,
+  type?: ?string,
 |};
 export type ExerciseFormEditMutationResponse = {|
   +editExercise: ?{|
     +id: ?string,
     +name: ?string,
     +description: ?string,
+    +type: ?string,
   |}
 |};
 export type ExerciseFormEditMutation = {|
@@ -33,11 +35,13 @@ mutation ExerciseFormEditMutation(
   $id: ID!
   $name: String!
   $description: String
+  $type: String
 ) {
-  editExercise(id: $id, name: $name, description: $description) {
+  editExercise(id: $id, name: $name, description: $description, type: $type) {
     id
     name
     description
+    type
   }
 }
 */
@@ -59,6 +63,12 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "description",
+    "type": "String",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "type",
     "type": "String",
     "defaultValue": null
   }
@@ -84,6 +94,11 @@ v1 = [
         "kind": "Variable",
         "name": "name",
         "variableName": "name"
+      },
+      {
+        "kind": "Variable",
+        "name": "type",
+        "variableName": "type"
       }
     ],
     "concreteType": "Exercise",
@@ -107,6 +122,13 @@ v1 = [
         "kind": "ScalarField",
         "alias": null,
         "name": "description",
+        "args": null,
+        "storageKey": null
+      },
+      {
+        "kind": "ScalarField",
+        "alias": null,
+        "name": "type",
         "args": null,
         "storageKey": null
       }
@@ -133,11 +155,11 @@ return {
     "operationKind": "mutation",
     "name": "ExerciseFormEditMutation",
     "id": null,
-    "text": "mutation ExerciseFormEditMutation(\n  $id: ID!\n  $name: String!\n  $description: String\n) {\n  editExercise(id: $id, name: $name, description: $description) {\n    id\n    name\n    description\n  }\n}\n",
+    "text": "mutation ExerciseFormEditMutation(\n  $id: ID!\n  $name: String!\n  $description: String\n  $type: String\n) {\n  editExercise(id: $id, name: $name, description: $description, type: $type) {\n    id\n    name\n    description\n    type\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '782cb64a9f8677df63050d1e4138faf4';
+(node/*: any*/).hash = '486ba54180c2f80fbe2dd9b9a773d756';
 module.exports = node;

@@ -9,7 +9,7 @@ describe("Test the editExercise mutation", () => {
   beforeEach(async (done) => {
     await model.deleteMany({}, ()  => {});
     exercise1 = await new model(
-      { name: "Exercise 1", description: "First test exercise" }
+      { name: "Exercise 1", description: "First test exercise", type: "distance+time" }
     ).save();
     await new model(
       { name: "Exercise 2", description: "Second test exercise" }
@@ -26,11 +26,13 @@ describe("Test the editExercise mutation", () => {
             editExercise(
               id: "${exercise1.id}", 
               name: "Updated Test Exercise", 
-              description: "Updated test description"
+              description: "Updated test description",
+              type: "weight+reps"
             ) {
               id
               name
               description
+              type
             }
           }
         `
@@ -44,7 +46,8 @@ describe("Test the editExercise mutation", () => {
             editExercise: {
               id: exercise1.id,
               name: "Updated Test Exercise", 
-              description: "Updated test description"
+              description: "Updated test description",
+              type: "weight+reps"
             }
           }
         });

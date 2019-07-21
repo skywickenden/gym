@@ -10,10 +10,10 @@ module.exports = {
   description: "Add an an exercise item",
   args: {
     name: { type: GraphQLNonNull(GraphQLString) },
-    description: { type: GraphQLString }
+    description: { type: GraphQLString },
+    type: { type: GraphQLString }
   },
   resolve: (root, args) => {
-    console.log(args);
     const exercise = new model(args);
     return exercise.save();
   }

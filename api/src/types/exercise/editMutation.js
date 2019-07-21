@@ -12,10 +12,10 @@ module.exports = {
   args: {
     id: { type: GraphQLNonNull(GraphQLID) },
     name: { type: GraphQLNonNull(GraphQLString) },
-    description: { type: GraphQLString }
+    description: { type: GraphQLString },
+    type: { type: GraphQLString }
   },
   resolve: async (root, args) => {
-    console.log(args);
     return await model.findByIdAndUpdate(
       args.id, 
       args,

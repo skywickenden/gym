@@ -9,7 +9,8 @@ describe("Test the Exercise query", () => {
     await ExerciseModel.deleteMany({}, () => {});
     exercise = await new ExerciseModel({ 
       name: "Test Exercise",
-      description: "Test Description"
+      description: "Test Description",
+      type: "distance+time"
     }).save();
     done();
   });
@@ -24,6 +25,7 @@ describe("Test the Exercise query", () => {
             id
             name
             description
+            type
           }
         }
       `})
@@ -35,7 +37,8 @@ describe("Test the Exercise query", () => {
             Exercise: {
               id: exercise.id,
               name: "Test Exercise",
-              description: "Test Description"
+              description: "Test Description",
+              type: "distance+time",
             }
           }
         });

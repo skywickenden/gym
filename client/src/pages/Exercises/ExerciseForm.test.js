@@ -1,5 +1,6 @@
 import React from "react";
 import { render, cleanup, wait, queryMock, fireEvent } from "../../../test-utils";
+import userEvent from "@testing-library/user-event";
 import buttonMock from "../../baseStyleMocks/buttonMock";
 import buttonHoverMock from "../../baseStyleMocks/buttonHoverMock";
 
@@ -36,7 +37,12 @@ describe("Add Exercise Form module", () => {
 
     queryMock.mockQuery(ExerciseMock); 
     
-    const { getByText, getByLabelText, queryByLabelText } = render(<Exercises />);
+    const { 
+      getByText, 
+      getByLabelText, 
+      queryByLabelText ,
+      getByTestId
+    } = render(<Exercises />);
 
     // Wait for exercise data to load
     await wait(() => { 
@@ -50,21 +56,37 @@ describe("Add Exercise Form module", () => {
       expect(addExerciseTitle.nodeName).toEqual("H4");
     });
 
-    const inputName = getByLabelText("Enter an exercise name:*");
-    const inputDescription = getByLabelText("Describe the exercise:");
+    const inputName = getByLabelText("Enter an exercise name*");
+    const inputDescription = getByLabelText("Describe the exercise");
+    getByText("Type of exercise");
+    const select = getByTestId("excerise-type-select");
+    const selectOption1 = getByTestId("excerise-type-weight");
+    const selectOption2 = getByTestId("excerise-type-distance");
+    expect(selectOption1.innerHTML).toBe("Weight &amp; Reps");
+    expect(selectOption2.innerHTML).toBe("Distance &amp; Time");
     const addButton = getByText("Add");
     const cancelButton = getByText("Cancel");
     
     const { critical: inputNameCSS } = collect(inputName, exerciseFormCSS);
     expect(inputNameCSS).toEqual(expect.stringContaining("margin:0 10px 0 0;"));
     expect(inputNameCSS).toEqual(expect.stringContaining("display:block;"));
-    expect(inputNameCSS).toEqual(expect.stringContaining("margin-bottom:10px;"));  
 
     const { critical: inputDescriptionCSS } = collect(inputDescription, exerciseFormCSS);
     expect(inputDescriptionCSS).toEqual(expect.stringContaining("margin:0 10px 0 0;"));
-    expect(inputDescriptionCSS).toEqual(expect.stringContaining("display:block;"));
-    expect(inputDescriptionCSS).toEqual(expect.stringContaining("margin-bottom:10px;"));  
+    expect(inputDescriptionCSS).toEqual(expect.stringContaining("display:block;"));  
     
+    const { critical: selectCSS } = collect(select, exerciseFormCSS);
+    expect(selectCSS).toEqual(expect.stringContaining("display:block;"));
+    expect(selectCSS).toEqual(expect.stringContaining("height:24px;"));
+
+    expect(selectOption1.selected).toBe(true);
+    expect(selectOption2.selected).toBe(false);
+    userEvent.selectOptions(select, "distance+time");
+    await wait(() => {
+      expect(selectOption1.selected).toBe(false);
+      expect(selectOption2.selected).toBe(true);
+    });
+
     const { critical: addCSS } = collect(addButton, exerciseFormCSS);
     const addTests = buttonMock();
     addTests.forEach(
@@ -90,18 +112,21 @@ describe("Add Exercise Form module", () => {
       name: "ExerciseFormAddMutation",
       variables: {
         name: "New Exercise",
-        description: "A new exercise"
+        description: "A new exercise",
+        type: "distance+time"
       },
       data: {
         addExercise: {
           id :"5d08cc8b14be08002aa7347d",
           name: "New Exercise",
-          description: "A new exercise"
+          description: "A new exercise",
+          type: "distance+time"
         }
       }
     });  
     fireEvent.change(inputName, { target: { value: "New Exercise" } });
     fireEvent.change(inputDescription, { target: { value: "A new exercise" } });
+    fireEvent.change(select, { target: { value: "distance+time" } });
     fireEvent.click(addButton);  
     await wait(() => {
       const listItem1 = getByText("exercise1");
@@ -110,7 +135,7 @@ describe("Add Exercise Form module", () => {
       expect(listItem2.nodeName).toEqual("LI");
       const listItem3 = getByText("New Exercise");
       expect(listItem3.nodeName).toEqual("LI");
-      expect(queryByLabelText("Enter an exercise name:*")).toBeNull();
+      expect(queryByLabelText("Enter an exercise name*")).toBeNull();
       const AddExerciseButton = getByText("Add Exercise");
       expect(AddExerciseButton.nodeName).toEqual("BUTTON");
     });      
@@ -136,9 +161,9 @@ describe("Add Exercise Form module", () => {
       expect(editExerciseTitle.nodeName).toEqual("H4");
     });
 
-    const inputName = getByLabelText("Enter an exercise name:*");
+    const inputName = getByLabelText("Enter an exercise name*");
     expect(inputName.value).toEqual("exercise1");
-    const inputDescription = getByLabelText("Describe the exercise:");
+    const inputDescription = getByLabelText("Describe the exercise");
     expect(inputDescription.value).toEqual("exercise1 description");
     const newEditButtons = getAllByText("Edit");
     expect(newEditButtons.length).toEqual(3);
@@ -148,13 +173,15 @@ describe("Add Exercise Form module", () => {
       variables: {
         id :"5d07e9310960ad00277ce5d1",
         name: "Edited Exercise",
-        description: "An edited exercise"
+        description: "An edited exercise",
+        type: "distance+time"
       },
       data: {
         editExercise: {
           id :"5d07e9310960ad00277ce5d1",
           name: "Edited Exercise",
-          description: "An edited exercise"
+          description: "An edited exercise",
+          type: "distance+time"
         }
       }
     });  

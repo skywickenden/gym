@@ -9,10 +9,15 @@ describe("Test the addExercise mutation", () => {
       .send({
         query: `
           mutation {
-            addExercise(name: "Test Exercise", description: "Test description") {
+            addExercise(
+              name: "Test Exercise", 
+              description: "Test description", 
+              type: "distance+time"
+            ) {
               id
               name
               description
+              type
             }
           }
         `
@@ -31,7 +36,8 @@ describe("Test the addExercise mutation", () => {
             addExercise: {
               id: newExerciseId,
               name: "Test Exercise",
-              description: "Test description"
+              description: "Test description",
+              type: "distance+time"
             }
           }
         });

@@ -61,7 +61,12 @@ const ListExercises = props => {
             {exercise.name}
             {showDescriptionId === exercise.id ? (
               <div className={styles.description}>
-                {exercise.description}
+                <div>
+                  {exercise.type === "weight+reps" 
+                  ? "Weight & Reps"
+                  : "Distance & Time"}
+                </div>
+                <div>{exercise.description}</div>
               </div>
             ) : ""}
           </li>
@@ -82,6 +87,7 @@ export default createFragmentContainer(ListExercises, {
       id
       name
       description
+      type
     }
   `,
 });
