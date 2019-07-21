@@ -1,5 +1,5 @@
 import React from "react";
-import { render, wait, queryMock, fireEvent  } from "../../../test-utils";
+import { render, wait, queryMock, fireEvent, within } from "../../../test-utils";
 import { toContainElement } from "jest-dom/extend-expect"; // eslint-disable-line no-unused-vars
 import buttonMock from "../../baseStyleMocks/buttonMock";
 import buttonHoverMock from "../../baseStyleMocks/buttonHoverMock";
@@ -22,7 +22,7 @@ describe("Delete Exercise module", () => {
   
     const { 
       getByText, 
-      queryByText, 
+      queryByText,
       getAllByText
     } = render(<Exercises />); 
 
@@ -63,10 +63,42 @@ describe("Delete Exercise module", () => {
     const deleteButtons = getAllByText("Delete");
     fireEvent.click(deleteButtons[0]);
     await wait(() => {
-      expect(getAllByText("Delete").length).toEqual(1);
-      expect(queryByText("exercise1")).toBeNull();
-      getByText("exercise2");
+      getByText("Please confirm deletion of exercise:");
+      getByText("Confirm");
+      getByText("Cancel");
+      const exerciseNames = getAllByText("exercise1");
+      expect(exerciseNames.length).toBe(2);
     });
+    
+    const cancel = getByText("Cancel");
+    // see https://stackoverflow.com/questions/55088482/jest-not-implemented-window-alert
+    // for reason for scroll hiding
+    const jsdomScroll = window.scroll;
+    window.scroll = () => {};
+    fireEvent.click(cancel);
+    await wait(() => {
+      const exerciseNames = getAllByText("exercise1");
+      expect(exerciseNames.length).toBe(1);
+    });
+
+    fireEvent.click(deleteButtons[0]);
+    await wait(() => {
+      getByText("Please confirm deletion of exercise:");
+      getByText("Confirm");
+      getByText("Cancel");
+      const exerciseNames = getAllByText("exercise1");
+      expect(exerciseNames.length).toBe(2);
+    });
+
+    const confirm = getByText("Confirm");
+
+    fireEvent.click(confirm);
+    await wait(() => {
+      expect(getAllByText("Delete").length).toEqual(1);
+      getByText("exercise2");
+      expect(queryByText("exercise1")).toBeNull();
+    });
+    window.scroll = jsdomScroll;
 
   });
 });

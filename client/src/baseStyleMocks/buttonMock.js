@@ -12,7 +12,7 @@ export default (overrides = {}) => {
     "vertical-align": "middle;",
     "user-select": "none;",
     "background-image": "none;",
-    "border": "1px solid transparent;",
+    "border": "2px solid #428bca;",
     "border-radius": "4px;",
     "padding": "3px 12px;",
     "cursor": "pointer;",

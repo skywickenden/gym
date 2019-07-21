@@ -54,7 +54,7 @@ const ListExercises = props => {
             className={styles.item} 
             key={exercise.id} 
             onClick={exerciseClicked.bind(null, exercise)}>
-            <DeleteExercise exerciseId={exercise.id} />
+            <DeleteExercise exercise={exercise} />
             <EditExercise 
               exercise={exercise} 
               showForm={props.showForm} />
