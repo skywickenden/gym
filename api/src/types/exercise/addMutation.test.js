@@ -22,7 +22,7 @@ describe("Test the addExercise mutation", () => {
           }
         `
       })
-      // .expect(200)
+      .expect(200)
       .expect((res) => {
         expect(isJSON(res.text)).toBe(true);
         const body = JSON .parse(res.text);
