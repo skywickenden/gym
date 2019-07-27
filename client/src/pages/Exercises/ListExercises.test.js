@@ -55,7 +55,7 @@ describe("Exercise page", () => {
     fireEvent.click(listItem1);
     await wait(() => {
       const description = getByText("exercise1 description");
-      const type = getByText("Distance & Time");
+      getByText("Distance & Time");
       const { critical: descriptionCSS } = collect(description, listExercisesCSS);
       expect(descriptionCSS).toEqual(expect.stringContaining("font-size:14px;"));
       expect(descriptionCSS).toEqual(expect.stringContaining("color:#666;"));

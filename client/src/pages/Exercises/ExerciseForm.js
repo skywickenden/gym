@@ -29,6 +29,9 @@ const styles = {
   select: css`
     display: block;
     height: 24px;
+  `,
+  error: css`
+    ${baseStyles.error}
   `
 };
 
@@ -38,15 +41,15 @@ const ExerciseForm = (props) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [type, setType] = useState(defaultType);
-
-  // const newExerciseRef = useRef(props.exercise ? props.exercise.name : null);
-  // const newExerciseDescriptionRef = useRef(null);
+  const [nameError, setNameError] = useState("");
+  const [formError, setFormError] = useState("");
 
   useEffect(() => {
     if (props.exercise) {
       setName(props.exercise.name);
       setDescription(props.exercise.description);
       setType(props.exercise.type);
+      clearErrors();
     } else {
       setName("");
       setDescription("");
@@ -59,6 +62,32 @@ const ExerciseForm = (props) => {
     setDescription("");
     setType(defaultType);
     props.toggleFormVisibility(false);
+  };
+
+  const clearForm = () => {
+    setName("");
+    setDescription("");
+    props.toggleFormVisibility(false);
+  };
+
+  const clearErrors = () => {
+    setNameError("");
+    setFormError("");
+  };
+
+  const handleFormErrors = errors => {
+    const nameError = errors.find(({message}) => message.includes("Path `name`"));
+    if (nameError) {
+      if (nameError.message.includes("is required")) {
+        setNameError("Name is a required field");
+      } else {
+        setNameError("There is a problem with the name");
+        console.error(errors);
+      }
+    } else {
+      setFormError("There is a problem with the form");
+      console.error(errors);
+    }
   };
 
   const addClicked = () => {
@@ -88,19 +117,22 @@ const ExerciseForm = (props) => {
       mutation,
       variables,
       updater: (store) => {
-        // This is a simple updater since ListExercise does not have pagination.
+        // This is a simple updater since ListExercises does not have pagination.
         const newSubmission = store.getRootField("addExercise"); 
         const root = store.getRoot();
         const allSubmissions = root.getLinkedRecords("Exercises");
         const newAllSubmissions = [...allSubmissions, newSubmission];
         root.setLinkedRecords(newAllSubmissions, "Exercises");
       },
-      onCompleted: () => {
-        setName("");
-        setDescription("");
-        props.toggleFormVisibility(false);
+      onCompleted: (response, errors) => {
+        clearErrors();
+        if (errors) {
+          handleFormErrors(errors);
+        } else {
+          clearForm();
+        }
       },
-      onError: err => console.error(err)
+      onError: error => {throw new Error(error);}
     });
 
   };
@@ -134,21 +166,26 @@ const ExerciseForm = (props) => {
       mutation,
       variables,
       updater: (store) => {
-        // This is a simple updater since ListExercise does not have pagination.
-        const newSubmission = store.getRootField("editExercise"); 
-        const root = store.getRoot();
-        const allSubmissions = root.getLinkedRecords("Exercises");
-        const newAllSubmissions = allSubmissions.map(row => 
-          row._dataID === newSubmission._dataID ? newSubmission : row
-        );
-        root.setLinkedRecords(newAllSubmissions, "Exercises");
+        // This is a simple updater since ListExercises does not have pagination.
+        const newSubmission = store.getRootField("editExercise");
+        if (newSubmission) {
+          const root = store.getRoot();
+          const allSubmissions = root.getLinkedRecords("Exercises");
+          const newAllSubmissions = allSubmissions.map(row => 
+            row._dataID === newSubmission._dataID ? newSubmission : row
+          );
+          root.setLinkedRecords(newAllSubmissions, "Exercises");
+        }
       },
-      onCompleted: () => {
-        setName("");
-        setDescription("");
-        props.toggleFormVisibility(false);
+      onCompleted: (response, errors) => {
+        clearErrors();
+        if (errors) {
+          handleFormErrors(errors);
+        } else {
+          clearForm();
+        }
       },
-      onError: err => console.error(err)
+      onError: error => {throw new Error(error);}
     });
 
   };
@@ -168,6 +205,7 @@ const ExerciseForm = (props) => {
             value={name}
             onChange={event => setName(event.target.value)} 
             type="text" />
+          <div className={styles.error}>{nameError}</div>
         </label>
       </div>
       
@@ -200,6 +238,10 @@ const ExerciseForm = (props) => {
             onChange={event => setDescription(event.target.value)} 
             type="text" />
         </label>
+      </div>
+
+      <div className={styles.error}>
+        <span className={styles.error}>{formError}</span>
       </div>
 
       {props.exercise ? (

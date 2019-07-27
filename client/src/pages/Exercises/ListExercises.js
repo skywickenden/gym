@@ -63,8 +63,8 @@ const ListExercises = props => {
               <div className={styles.description}>
                 <div>
                   {exercise.type === "weight+reps" 
-                  ? "Weight & Reps"
-                  : "Distance & Time"}
+                    ? "Weight & Reps"
+                    : "Distance & Time"}
                 </div>
                 <div>{exercise.description}</div>
               </div>

@@ -198,6 +198,66 @@ describe("Add Exercise Form module", () => {
       expect(AddExerciseButton.nodeName).toEqual("BUTTON");
       const editButtons = getAllByText("Edit");
       expect(editButtons.length).toEqual(2);      
+    });           
+  });      
+ 
+  it("Checks an edited exercise shows an error if the name field is empty", async () => {
+
+    queryMock.mockQuery(ExerciseMock); 
+    
+    const { getByText, getAllByText, getByLabelText } = render(<Exercises />);
+
+    // Wait for exercise data to load
+    await wait(() => { 
+      getByText("exercise1");
+    });
+
+    const editButtons = getAllByText("Edit");
+    fireEvent.click(editButtons[0]);
+    await wait(() => {
+      const editExerciseTitle = getByText("Edit Exercise");
+      expect(editExerciseTitle.nodeName).toEqual("H4");
+    });
+
+    const inputName = getByLabelText("Enter an exercise name*");
+    const newEditButtons = getAllByText("Edit");
+
+    queryMock.mockQuery({
+      name: "ExerciseFormEditMutation",
+      variables: {
+        id :"5d07e9310960ad00277ce5d1",
+        name: "",
+        description: "exercise1 description",
+        type: "distance+time"
+      },
+      data: {
+        editExercise: null
+      },
+      graphqlErrors: [
+        {
+          message: "Validation failed: name: Path `name` is required.",
+          locations: [
+            {
+              line: 7,
+              column: 3
+            }
+          ],
+          path: [
+            "editExercise"
+          ]
+        }
+      ]
+    });  
+    await fireEvent.change(inputName, { target: { value: "" } });
+    fireEvent.click(newEditButtons[0]);  
+    await wait(() => {
+      getByText("Name is a required field");
+      const listItem1 = getByText("exercise1");
+      expect(listItem1.nodeName).toEqual("LI");  
+      const editButtons = getAllByText("Edit");
+      expect(editButtons.length).toEqual(3);      
+
+      
     });      
 
   });  

@@ -1,5 +1,5 @@
 # source: http://gym-api:3000/graphql
-# timestamp: Sun Jul 21 2019 10:09:14 GMT+0000 (Coordinated Universal Time)
+# timestamp: Mon Jul 22 2019 10:38:54 GMT+0000 (Coordinated Universal Time)
 
 schema {
   query: RootQueryType

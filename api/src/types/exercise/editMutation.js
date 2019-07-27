@@ -19,8 +19,7 @@ module.exports = {
     return await model.findByIdAndUpdate(
       args.id, 
       args,
-      { new: true }
-    ).exec();
-    
+      { new: true, runValidators: true }
+    ).exec();  
   }
 };
