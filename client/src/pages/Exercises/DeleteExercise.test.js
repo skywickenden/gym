@@ -1,5 +1,5 @@
 import React from "react";
-import { render, wait, queryMock, fireEvent, within } from "../../../test-utils";
+import { render, wait, queryMock, fireEvent } from "../../../test-utils";
 import { toContainElement } from "jest-dom/extend-expect"; // eslint-disable-line no-unused-vars
 import buttonMock from "../../baseStyleMocks/buttonMock";
 import buttonHoverMock from "../../baseStyleMocks/buttonHoverMock";
@@ -98,7 +98,7 @@ describe("Delete Exercise module", () => {
       getByText("exercise2");
       expect(queryByText("exercise1")).toBeNull();
     });
-    window.scroll = jsdomScroll;
+    window.scroll = jsdomScroll; // eslint-disable-line require-atomic-updates
 
   });
 });

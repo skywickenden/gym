@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { commitMutation, graphql } from "react-relay";
 import environment from "../../../relay-environment";
-import Modal from 'react-responsive-modal';
+import Modal from "react-responsive-modal";
 import { css } from "linaria";
 import baseStyles from "../../base-styles";
 
