@@ -20,7 +20,7 @@ Demonstrates usage of:
  
 Clone into a folder. Copy `example.env` into `.env` and edit `.env` to add unique db passwords and ensure that the ports the app runs on are available. Copy `example.mong-init.js` into `mong-init.js` and add the same passwords as entered into `.env`.
  
- Run `docker-compose build` followed by `docker-comose up`. 
+ Run `docker-compose build` followed by `docker-compose up`. 
  
 ### Developing
 
