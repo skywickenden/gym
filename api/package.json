@@ -4,7 +4,7 @@
   "description": "A simple express server npm boilerplate",
   "main": "server.js",
   "scripts": {
-    "test": "jest --watchAll",
+    "test": "jest --watchAll --runInBand",
     "start": "nodemon -L --inspect=0.0.0.0 server.js",
     "lint": "eslint src"
   },
