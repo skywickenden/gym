@@ -4,11 +4,11 @@ db.createUser({
   roles: [
     {
       role: "readWrite",
-      db: "api-graphql"
+      db: "api-gym"
     },
     {
       role: "readWrite",
-      db: "api-graphql-test"
+      db: "api-gym-test"
     }
   ]
 });
