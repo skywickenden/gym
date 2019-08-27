@@ -58,8 +58,8 @@ services:
       - 8081:${MONGO_EXPRESS_PORT}
     volumes:
       - mongo-data:/data/db
-    links:
-      - mongo:mongo
+    depends_on: 
+      - mongo
     environment:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=${MONGO_ROOT_USERNAME}
       - ME_CONFIG_MONGODB_ADMINPASSWORD=${MONGO_ROOT_PASSWORD}
