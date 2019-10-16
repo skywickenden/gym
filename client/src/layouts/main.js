@@ -27,6 +27,7 @@ const MainLayout = props => (
       <nav className={styles.nav}>
         <Link className={styles.navItem} to="/">Home</Link>
         <Link className={styles.navItem} to="/exercises">Exercises</Link>
+        <Link className={styles.navItem} to="/workouts">Workout</Link>
       </nav>
     </header>
     <main>

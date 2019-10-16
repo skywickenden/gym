@@ -30,6 +30,12 @@ exports[`Renders and has text content 1`] = `
         >
           Exercises
         </a>
+        <a
+          class="n1rj6n47"
+          href="/workouts"
+        >
+          Workout
+        </a>
       </nav>
     </header>
     <main />

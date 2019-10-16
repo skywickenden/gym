@@ -7,12 +7,13 @@ module.exports = mongoose.model("workout", {
     required: true
   },
   exercises: [{
-    exercise: { type: Schema.Types.ObjectId, ref: "exercise" },
-    reps: [{
-      weight: Number,
-      quantity: Number,
-      distance: Number,
-      timespan: String
-    }],
+    foo: String
+    // exercise: { type: Schema.Types.ObjectId, ref: "exercise" },
+    // reps: [{
+    //   weight: Number,
+    //   quantity: Number,
+    //   distance: Number,
+    //   timespan: String
+    // }],
   }]
 });

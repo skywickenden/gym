@@ -1,10 +1,17 @@
 # source: http://gym-api:3000/graphql
-# timestamp: Mon Jul 22 2019 10:38:54 GMT+0000 (Coordinated Universal Time)
+# timestamp: Thu Sep 05 2019 08:01:24 GMT+0000 (Coordinated Universal Time)
 
 schema {
   query: RootQueryType
   mutation: RootMutationType
 }
+
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the
+`date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO
+8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar DateTime
 
 type Exercise {
   id: ID
@@ -17,11 +24,35 @@ type RootMutationType {
   """Add an an exercise item"""
   addExercise(name: String!, description: String, type: String): Exercise
 
+  """Add a workout item"""
+  addWorkout(datetime: DateTime!): Workout
+
+  """Append an Exercise to a Workout"""
+  appendWorkoutExercise(id: ID!, exerciseId: ID!): Workout
+
+  """Append a rep to a Workout"""
+  appendWorkoutExerciseRep(id: ID!, exerciseId: ID!, weight: Float, quantity: Int, distance: Float, timespan: String): Workout
+
   """Delete an exercise"""
   deleteExercise(id: ID!): Exercise
 
+  """Delete a workout"""
+  deleteWorkout(id: ID!): Workout
+
+  """Delete an Exercise from a Workout"""
+  deleteWorkoutExercise(id: ID!, exerciseId: ID!): Workout
+
+  """Delete a Rep from from an Exercise in a Workout"""
+  deleteWorkoutRep(id: ID!, exerciseId: ID!, repIndex: Int!): Workout
+
   """Edit an an exercise item"""
   editExercise(id: ID!, name: String!, description: String, type: String): Exercise
+
+  """Edit an a workout item"""
+  editWorkout(id: ID!, datetime: DateTime!): Workout
+
+  """Edit a Rep from from an Exercise in a Workout"""
+  editWorkoutRep(id: ID!, exerciseId: ID!, repIndex: Int!, weight: Float, quantity: Int, distance: Float, timespan: String): Workout
 }
 
 type RootQueryType {
@@ -30,4 +61,24 @@ type RootQueryType {
 
   """A collection of Exercises"""
   Exercises: [Exercise]
+
+  """A Workout item"""
+  Workout(id: ID!): Workout
+
+  """An exercise in a workout"""
+  WorkoutExercise: WorkoutExerciseType
+
+  """A collection of Workouts"""
+  Workouts: [Workout]
+}
+
+type Workout {
+  id: ID
+  datetime: DateTime
+  exercisesr: [Exercise]
+}
+
+type WorkoutExerciseType {
+  id: ID
+  exercisesx: String
 }
