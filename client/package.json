@@ -43,7 +43,7 @@
     "graphql": "^14.3.1",
     "graphql-query-test-mock": "^0.12.0",
     "html-loader": "^0.5.5",
-    "html-webpack-plugin": "^3.2.0",
+    "html-webpack-plugin": "^5.5.0",
     "jest": "^24.8.0",
     "jest-dom": "^3.5.0",
     "mini-css-extract-plugin": "^0.7.0",
